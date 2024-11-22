@@ -1,0 +1,51 @@
+<!-- src/app/dashboard/dashboard.component.html -->
+<div class="p-4 space-y-4">
+    <header class="flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-purple-600">Energy Data Dashboard</h1>
+      <button
+        (click)="backToTokenInput()"
+        class="px-4 py-2 text-white bg-red-600 rounded hover:bg-red-700"
+      >
+        Back
+      </button>
+    </header>
+  
+    <div class="flex justify-around">
+      <button
+        (click)="startSendingData()"
+        [disabled]="isSending"
+        class="px-4 py-2 text-white bg-green-600 rounded hover:bg-green-700"
+      >
+        Start
+      </button>
+      <button
+        (click)="stopSendingData()"
+        [disabled]="!isSending"
+        class="px-4 py-2 text-white bg-red-600 rounded hover:bg-red-700"
+      >
+        Stop
+      </button>
+    </div>
+  
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+      <div *ngFor="let metric of ['frequency', 'PF', 'electricPrice']" class="bg-purple-50 rounded-lg shadow-md p-4">
+        <h2 class="text-lg font-semibold text-purple-600">
+          {{ metric === 'frequency' ? 'Average Frequency' : metric === 'PF' ? 'Average PF' : 'Avg Electric Price' }}
+        </h2>
+        <p class="text-2xl font-bold text-purple-800">{{ calculateAverage(metric) | number:'1.2-2' }}</p>
+      </div>
+    </div>
+  
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div>
+        <canvas id="lineChartVoltage"></canvas>
+      </div>
+      <div>
+        <canvas id="lineChartPower"></canvas>
+      </div>
+      <div>
+        <canvas id="lineChartCurrent"></canvas>
+      </div>
+    </div>
+  </div>
+  

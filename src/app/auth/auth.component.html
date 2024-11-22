@@ -1,0 +1,17 @@
+<!-- src/app/auth/auth.component.html -->
+<div class="flex flex-col items-center justify-center h-screen space-y-4">
+    <h1 class="text-2xl font-bold">Token Authentication</h1>
+    <input
+      [(ngModel)]="token"
+      class="p-3 border rounded w-80"
+      placeholder="Enter Token"
+      type="text"
+    />
+    <button
+      (click)="authenticate()"
+      class="w-80 p-3 text-white bg-blue-600 rounded hover:bg-blue-700"
+    >
+      Authenticate
+    </button>
+  </div>
+  
